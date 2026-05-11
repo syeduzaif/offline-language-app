@@ -1,0 +1,68 @@
+name: offline_language_app
+description: "LinguaGo — offline-first language learning app."
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.11.5
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+
+  # Local DB + encryption (per CLAUDE.md)
+  drift: ^2.20.0
+  sqlite3: ^2.4.0
+  sqlcipher_flutter_libs: ^0.6.4
+  path_provider: ^2.1.4
+  path: ^1.9.0
+
+  # State management (Riverpod 3.x per CLAUDE.md)
+  flutter_riverpod: ^3.0.0
+
+  # HTTP (deferred — only used post-v2 for content delta updates)
+  dio: ^5.7.0
+  dio_cache_interceptor: ^3.5.0
+
+  # Connectivity
+  connectivity_plus: ^6.0.5
+  flutter_offline: ^4.0.0
+
+  # Secure storage (DB encryption key)
+  flutter_secure_storage: ^9.2.2
+
+  # Background tasks — workmanager deferred to v2 (current 0.5.2 has Kotlin
+  # build incompatibility; v1 streak computation is foreground-only per PRD §9.6).
+
+  # Models
+  freezed_annotation: ^3.0.0
+  json_annotation: ^4.9.0
+
+  # Logging
+  logger: ^2.4.0
+
+  # Confetti animation for FL-5 lesson completion celebration.
+  # Justified deviation from CLAUDE.md package list: PRD §6.3 FL-5 mandates
+  # a real confetti animation, and a CustomPainter alternative would add
+  # significantly more code than this single-purpose package.
+  confetti: ^0.7.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+  # Codegen
+  build_runner: ^2.4.13
+  drift_dev: ^2.20.0
+  freezed: ^3.0.0
+  json_serializable: ^6.8.0
+
+dependency_overrides:
+  source_gen: ^4.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/content/
