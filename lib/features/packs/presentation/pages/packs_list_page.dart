@@ -5,6 +5,7 @@ import '../../../../core/constants/app_constants.dart';
 import '../../../../core/services/database.dart';
 import '../../../../core/widgets/loading_widget.dart';
 import '../../../home/presentation/controllers/home_state.dart';
+import '../../../lookup/presentation/pages/lookup_page.dart';
 import '../../data/repositories/packs_repository.dart';
 import 'pack_detail_page.dart';
 
@@ -19,6 +20,22 @@ class PacksListPage extends ConsumerWidget {
       body: code == null
           ? const Center(child: Text('Pick a language first'))
           : _PacksList(languageCode: code),
+      floatingActionButton: code == null ? null : const _AddPhraseFab(),
+    );
+  }
+}
+
+class _AddPhraseFab extends StatelessWidget {
+  const _AddPhraseFab();
+
+  @override
+  Widget build(BuildContext context) {
+    return FloatingActionButton.extended(
+      onPressed: () => Navigator.of(context).push(
+        MaterialPageRoute(builder: (_) => const LookupPage()),
+      ),
+      icon: const Icon(Icons.add),
+      label: const Text('Add a phrase'),
     );
   }
 }
